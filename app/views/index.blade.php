@@ -25,10 +25,10 @@
             })  
             $('#get_btn').click(function(e){
                 e.preventDefault();
-                get_old_event('','',0);
+                get_old_event('',0);
             })
         });
-        function get_old_event(str,url,i){
+        function get_old_event(url,i){
             
             FB.getLoginStatus(function(res){
                 if(res.status != 'connected'){
@@ -41,20 +41,15 @@
                         
                         if(i <= 10 && typeof(res.paging) != "undefined"){
                             for(var event in res.data){
-                                str += res.data[event].name + res.data[event].description;
+                                $.post('{{url("ckip")}}',{info:{name:res.data[event].name,description:res.data[event].description}},function(res){
+                                    
+                                })
+                                console.log(res.data[event].description);
                                 i++;
-                                
                             }
-                            get_old_event(str,res.paging.next,i);
+                            get_old_event(res.paging.next,i);
                         }else{
-                            str = str.replace(/\n/g,'').replace(/ /g,'').replace('================','');
-                            // str = str.replace(/ /g,"").replace(/、/g,"").replace(/\n/g,"").replace(/。/g,"").replace(/，/g,",").replace(/：/g,"").split(',');
-                            $.post('{{url("ckip")}}',{str:str},function(res){
-                                $('#content').append(res + '<br/>');
-                            })
-                            console.log(str);
-                            console.log(str.length);
-                            console.log(i);
+                            
                         }
                     });
                 }

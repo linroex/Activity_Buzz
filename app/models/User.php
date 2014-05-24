@@ -5,5 +5,4 @@ class User extends Eloquent{
     public $primaryKey = 'id';
     public $timestamps = false;
 
-    
 }
