@@ -25,3 +25,6 @@ Route::get('/ckip',function(){
     return $result;
 
 });
+Route::get('/',function(){
+    return View::make('index');
+});
