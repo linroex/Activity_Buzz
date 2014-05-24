@@ -21,8 +21,16 @@ Route::get('/ckip',function(){
     $dom = Sunra\PhpSimple\HtmlDomParser::str_get_html($response->body);
     $result = $dom->find('pre')[0]->plaintext;
     $result = str_replace(' ', '', $result);
-    // preg_match_all("/\[term\]=>(:alnum:)*\[tag\]/", $result, $result);
-    return $result;
+
+    $data = [];
+    $tmp = [];
+
+    $result = explode("[term]", $result);
+    for($i =1; $i< count($result); $i++){
+    	    preg_match("/=>(.*)\[tag\]/U", $result[$i], $tmp);
+	    $data[] = $tmp[1];
+    }
+    return var_dump($data);  // data is what u want
 
 });
 Route::get('/',function(){
