@@ -57,7 +57,7 @@ return array(
 			'host'      => '127.0.0.1',
 			'database'  => 'activity_buzz',
 			'username'  => 'activity_buzz',
-			'password'  => 'XvRUSS6AEvwW4t74',
+			'password'  => 'Gws37pVFjFABwcDZ',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
