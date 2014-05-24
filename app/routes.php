@@ -12,26 +12,18 @@
 */
 
 
-Route::get('/ckip',function(){
-    // 等待夏處理
-    $str = '輕井澤吃好飽六分鐘到城區考完多益有陌生人載我';
-    $request = cURL::newRequest('post','http://www.fukuball.com/ckip-client/ckip-process',['paragraph'=>$str]);
-    $request = $request->setHeader('content-type', 'application/x-www-form-urlencoded');
-    $response = $request->send();
-    $dom = Sunra\PhpSimple\HtmlDomParser::str_get_html($response->body);
-    $result = $dom->find('pre')[0]->plaintext;
-    $result = str_replace(' ', '', $result);
-
-    $data = [];
-    $tmp = [];
-
-    $result = explode("[term]", $result);
-    for($i =1; $i< count($result); $i++){
-    	    preg_match("/=>(.*)\[tag\]/U", $result[$i], $tmp);
-	    $data[] = $tmp[1];
+Route::post('/ckip',function(){
+    $text = Input::get('str');
+    $arr = [];
+    for($i = 1; $i < mb_strlen($text, 'utf-8')/90; $i++){
+        $sss = mb_substr($text, $i*90,90,'utf-8');
+        // if(strlen <)
+        echo $sss;
+        array_push($arr, CKIP::str($sss));
+        // var_dump(CKIP::str($sss));
     }
-    return var_dump($data);  // data is what u want
-
+    var_dump(array_sum($arr));
+    return 1;
 });
 Route::get('/',function(){
     return View::make('index');

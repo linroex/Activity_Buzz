@@ -39,15 +39,20 @@
                     }
                     FB.api(url,{fields:'description,name'},function(res){
                         
-                        if(i <= 200 && typeof(res.paging) != "undefined"){
+                        if(i <= 10 && typeof(res.paging) != "undefined"){
                             for(var event in res.data){
                                 str += res.data[event].name + res.data[event].description;
                                 i++;
-                                $('#content').append(res.data[event].name + '<br/>');
+                                
                             }
                             get_old_event(str,res.paging.next,i);
                         }else{
-                            str = str.replace(/ /g,"").split('\n');
+                            str = str.replace(/\n/g,'').replace(/ /g,'').replace('================','');
+                            // str = str.replace(/ /g,"").replace(/、/g,"").replace(/\n/g,"").replace(/。/g,"").replace(/，/g,",").replace(/：/g,"").split(',');
+                            $.post('{{url("ckip")}}',{str:str},function(res){
+                                $('#content').append(res + '<br/>');
+                            })
+                            console.log(str);
                             console.log(str.length);
                             console.log(i);
                         }
