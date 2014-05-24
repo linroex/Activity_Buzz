@@ -25,14 +25,11 @@ Route::get('/ckip',function(){
     $data = [];
     $tmp = [];
 
-    $c=1;
     $result = explode("[term]", $result);
-//    return var_dump($result);
-   // preg_match("/=>(.*)\[tag\]/U", $result[$c], $tmp);
     for($i =1; $i< count($result); $i++){
     	    preg_match("/=>(.*)\[tag\]/U", $result[$i], $tmp);
 	    $data[] = $tmp[1];
     }
-    return "<pre>".var_dump($data);
+    return var_dump($data);  // data is what u want
 
 });
