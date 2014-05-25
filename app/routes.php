@@ -10,32 +10,24 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
 Route::get('/',function(){
     return View::make('index');
 });
+Route::get('/index',function(){
+    return View::make('index1');
+});
 Route::post('/ckip', 'ParseWord@parse');
 Route::get('/notify/mail/{id}', 'Notify@mail');
-Route::get('/user', 'UserAuth@checkUser'); // chceck user wheather register or not
-Route::get('/register', 'UserAuth@addUser'); 
-
-
-
-
+Route::post('/user', 'UserAuth@checkUser'); // chceck user wheather register or not
+Route::post('/register', 'UserAuth@addUser'); 
 Route::get('/theme', function(){return View::make('main');} );
-
-
-
-
 Route::post('/addusertag',function(){
     UserTag::add_tag(Input::get('id'),Input::get('tag'));
 });
 Route::get('/like',function(){
-    return ActivityTag::search_like_activity(Input::get('id'));
+    return Response::json(ActivityTag::search_like_activity(Input::get('id')));
 });
-Route::get('/test',function(){
-    var_dump( (UserTag::get_tag(Input::get('id'))));
+Route::get('/tag',function(){
+    return Response::json((UserTag::get_tag(Input::get('id'))));
 });
-Route::get('/rand',function(){
-    var_dump(Activity::getRandActivity(8));
-});
+
