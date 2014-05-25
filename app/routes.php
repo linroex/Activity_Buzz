@@ -16,12 +16,14 @@ Route::get('/',function(){
 });
 Route::post('/ckip', 'ParseWord@parse');
 Route::post('/addusertag',function(){
-    // dd(Input::get('id'));
     UserTag::add_tag(Input::get('id'),Input::get('tag'));
 });
-Route::post('/like',function(){
+Route::get('/like',function(){
     return ActivityTag::search_like_activity(Input::get('id'));
 });
 Route::get('/test',function(){
-    var_dump(UserTag::get_tag(Input::get('id')));
+    var_dump( (UserTag::get_tag(Input::get('id'))));
+});
+Route::get('/rand',function(){
+    var_dump(Activity::getRandActivity(8));
 });

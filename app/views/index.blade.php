@@ -53,7 +53,7 @@
                     }
                     FB.api(url,{fields:'description,name'},function(res){
                         
-                        if(i <= 10 && typeof(res.paging) != "undefined"){
+                        if(i <= 30 && typeof(res.paging) != "undefined"){
                             for(var event in res.data){
                                 $.post('{{url("ckip")}}',{info:{name:res.data[event].name,description:res.data[event].description}},function(res){
                                     $.post('{{url("addusertag")}}',{id:userID,tag:res},function(data){
