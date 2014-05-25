@@ -41,9 +41,14 @@
                 });
             })  
             $('#get_btn').click(function(e){
+                alert('start load');
+                $('#get_btn').attr('disabled',true);
                 e.preventDefault();
                 get_old_event('',0);
-                $('#get_btn').attr('disabled');
+                
+            })
+            $('#logout_btn').click(function(){
+                FB.logout();
             })
             
         });
@@ -55,7 +60,7 @@
             });
         }
         function get_old_event(url,i){
-            alert('start load');
+            
             FB.getLoginStatus(function(res){
                 if(res.status != 'connected'){
                     FB.login(function(){},{scope:'user_events,user_groups,user_activities, email'});
@@ -65,7 +70,7 @@
 	                }
                     FB.api(url,{fields:'description,name'},function(res){
                         // alert('整理中，請勿重複點擊');
-                        if(i <= 30 && typeof(res.paging) != "undefined"){
+                        if(i <= 50 && typeof(res.paging) != "undefined"){
                             for(var event in res.data){
                                 $.post('{{url("ckip")}}',{info:{name:res.data[event].name,description:res.data[event].description}},function(res){
                                     $.post('{{url("addusertag")}}',{id:userID,tag:res},function(data){
@@ -87,6 +92,7 @@
 </head>
 <body>
     <input type="button" id="login_btn" value="登入"><br>
+    <input type="button" id="logout_btn" value="登出">
     <input type="button" id="get_btn" value="取得Tag"><br>
     <a href='{{url()}}' target="_blank" id="user_tag_link">檢視用戶標籤</a><br>
     <a href='{{url()}}' target="_blank" id="suggest_user_activity_link">檢視推薦貼文</a>
