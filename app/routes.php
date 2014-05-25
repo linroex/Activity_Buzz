@@ -18,6 +18,7 @@ Route::post('/ckip', 'ParseWord@parse');
 Route::get('/notify/mail/{id}', 'Notify@mail');
 Route::post('/user', 'UserAuth@checkUser'); // chceck user wheather register or not
 Route::post('/register', 'UserAuth@addUser'); 
+Route::get('/theme', function(){return View::make('main');} );
 Route::post('/addusertag',function(){
     UserTag::add_tag(Input::get('id'),Input::get('tag'));
 });
