@@ -9,13 +9,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
 
 	<title>Activity Buzz</title>
-
+@yield('style')
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" media="screen">
 
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/jcarousel.css') }}" />
 
 	<link rel="stylesheet" href="{{ asset('css/normalize.css') }}" type="text/css" media="screen">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="{{ asset('css/grid.css') }}" type="text/css" media="screen">
 
 	<link href="{{ asset('css/prettyPhoto.css') }}" rel="stylesheet" type="text/css" />
@@ -24,8 +23,10 @@
 
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300,600,300italic' rel='stylesheet' type='text/css'>
 
-	
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
+
+@section('script')
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
 	<script type="text/javascript" src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
@@ -45,7 +46,7 @@
 	<script type="text/javascript" src="{{ asset('js/waypoints.min.js') }}"></script>
 
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>	
-
+@show
 	<!--[if lt IE 9]>
 
 		<script src="js/html5shiv.js"></script>
@@ -153,9 +154,7 @@
 </div>
 
 
-
-
-
+@section('main')
 <div class="slide" id="slide1" data-slide="1" data-stellar-background-ratio="0.5">
 
 	<div class="effect_2 padding_slide1">
@@ -1164,7 +1163,7 @@
 
 </div>
 
-
+@show
 
 
 
