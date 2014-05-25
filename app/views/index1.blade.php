@@ -19,8 +19,8 @@
                 if(res.status == 'connected'){
                     $('#login_btn').text('登出');
                     userID = res.authResponse.userID;
-                    // $("#user_tag_link").attr('href',$("#user_tag_link").attr('href') + '/tag1?id=' + userID);
-                    // $("#suggest_user_activity_link").attr('href',$("#suggest_user_activity_link").attr('href') + '/like1?id=' + userID);
+                    $("#user_tag_link").attr('href',$("#user_tag_link").attr('href') + '/tag1?id=' + userID);
+                    $("#suggest_user_activity_link").attr('href',$("#suggest_user_activity_link").attr('href') + '/like1?id=' + userID);
                     
                 }
             });
@@ -35,8 +35,8 @@
                             userID = res.authResponse.userID;
                             register();
                             alert('登入成功');
-                            // $("#user_tag_link").attr('href',$("#user_tag_link").attr('href') + '/tag1?id=' + userID);
-                            // $("#suggest_user_activity_link").attr('href',$("#suggest_user_activity_link").attr('href') + '/like1?id=' + userID);
+                            $("#user_tag_link").attr('href',$("#user_tag_link").attr('href') + '/tag1?id=' + userID);
+                            $("#suggest_user_activity_link").attr('href',$("#suggest_user_activity_link").attr('href') + '/like1?id=' + userID);
                         },{scope:'user_events,user_groups,user_activities,email'});
                     }else{
                         FB.logout();
@@ -52,20 +52,20 @@
                 get_old_event('',0);
                 
             })
-            $('#user_tag_link').click(function(e){
-                e.preventDefault();
-                $.get('{{url("tag1?id=")}}'+userID,function(data){
-                    $('#content').text('');
-                    $('#content').append(data);
-                })
-            })
-            $('#suggest_user_activity_link').click(function(e){
-                e.preventDefault();
-                $.get('{{url("like1?id=")}}'+userID,function(data){
-                    $('#content').text('');
-                    $('#content').append(data);
-                })
-            })
+            // $('#user_tag_link').click(function(e){
+            //     e.preventDefault();
+            //     $.get('{{url("tag1?id=")}}'+userID,function(data){
+            //         $('#content').text('');
+            //         $('#content').append(data);
+            //     })
+            // })
+            // $('#suggest_user_activity_link').click(function(e){
+            //     e.preventDefault();
+            //     $.get('{{url("like1?id=")}}'+userID,function(data){
+            //         $('#content').text('');
+            //         $('#content').append(data);
+            //     })
+            // })
         });
         function register(){
             FB.api('/me',function(res){
