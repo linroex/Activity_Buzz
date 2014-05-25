@@ -6,12 +6,16 @@ class ActivityTag extends Eloquent{
     public $timestamps = false;
     public static function search_like_activity($user){
         $tags = UserTag::get_tag($user);
-        
+        $aid = "";
         $result = [];
         foreach ($tags as $tag) {
             $data = self::where('tag','=',$tag['tag'])->get()->toArray();
+            
             if($data !== []){
-                array_push($result, Activity::getActivityData($data[0]['id'])[0]);
+                if(!strpos($aid,$data[0]['id'])){
+                    array_push($result, Activity::getActivityData($data[0]['id'])[0]);
+                    $aid .= $data[0]['id'] . ',';
+                }
             }
         }
         return $result;
