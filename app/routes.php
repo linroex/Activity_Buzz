@@ -17,7 +17,11 @@ Route::get('/',function(){
 Route::post('/ckip', 'ParseWord@parse');
 Route::get('/notify/mail/{id}', 'Notify@mail');
 Route::post('/addusertag',function(){
-    UserTag::add_tag(Input::get('id'),json_decode(Input::get('tag'),1));
+    // dd(Input::get('id'));
+    UserTag::add_tag(Input::get('id'),Input::get('tag'));
+});
+Route::post('/like',function(){
+    return ActivityTag::search_like_activity(Input::get('id'));
 });
 Route::get('/test',function(){
     var_dump(ActivityTag::search_like_activity('100000248691611'));
