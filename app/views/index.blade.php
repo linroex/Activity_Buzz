@@ -35,6 +35,12 @@
                 e.preventDefault();
                 get_old_event('',0);
             })
+            $('#load_btn').click(function(e){
+                e.preventDefault();
+                $.post('{{url("like")}}',{id:userID},function(data){
+                    $('#content').append(data);
+                })
+            })
         });
         function get_old_event(url,i){
             
@@ -70,6 +76,7 @@
 <body>
     <a id="login_btn">LOGIN</a><br>
     <a id="get_btn">GET</a><br>
+    <a id="load_btn">Load Activity</a><br>
     <div id="content">
         
     </div>

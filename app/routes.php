@@ -19,6 +19,9 @@ Route::post('/addusertag',function(){
     // dd(Input::get('id'));
     UserTag::add_tag(Input::get('id'),Input::get('tag'));
 });
+Route::post('/like',function(){
+    return ActivityTag::search_like_activity(Input::get('id'));
+});
 Route::get('/test',function(){
     var_dump(ActivityTag::search_like_activity('100000248691611'));
 });
