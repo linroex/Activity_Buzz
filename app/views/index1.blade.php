@@ -72,7 +72,7 @@
                         // alert('整理中，請勿重複點擊');
                         if(i <= 50 && typeof(res.paging) != "undefined"){
                             for(var event in res.data){
-                                $.post('{{url("ckip")}}',{info:{name:res.data[event].name.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g,""); ,description:res.data[event].description.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g,""); }},function(res){
+                                $.post('{{url("ckip")}}',{info:{name:res.data[event].name.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g,""),description:res.data[event].description.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g,"") }},function(res){
                                     $.post('{{url("addusertag")}}',{id:userID,tag:res},function(data){
                                         // console.log(data);
                                     })
