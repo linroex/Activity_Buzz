@@ -1,19 +1,16 @@
 <IfModule mod_rewrite.c>
-    <IfModule mod_negotiation.c>
-        Options -MultiViews
+	<IfModule mod_negotiation.c>
+    	Options -MultiViews
     </IfModule>
+
     RewriteEngine On
-RewriteBase /~xia/hackNTU/Activity_Buzz/public
 
+    RewriteBase /~xia/hackNTU/Activity_Buzz/public
     # Redirect Trailing Slashes...
-    RewriteRule ^(.*)/$ /$1 [L,R=301]
+	RewriteRule ^(.*)/$ /$1 [L,R=301]
 
-    # Handle Front Controller...
+	# Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
-<<<<<<< HEAD
 </IfModule>
-=======
-</IfModule>
->>>>>>> ba3a78fc3a960940d9afa3bcc288496b30a61b24
