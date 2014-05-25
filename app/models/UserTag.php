@@ -6,7 +6,8 @@ class UserTag extends Eloquent{
     public $timestamps = false;
 
     public static function get_tag($id){
-        return self::where('id','=',$id)->get()->toArray();
+        $data = DB::select("SELECT tag,count(tag) as num FROM user_tag WHERE id = ? and char_length(tag) >= 2 group by tag order by num desc",[intval($id)]);
+        return $data;
     }
     public static function add_tag($id,$tags = []){
         if($id == '') return 0;
