@@ -16,6 +16,8 @@ Route::get('/',function(){
 });
 Route::post('/ckip', 'ParseWord@parse');
 Route::get('/notify/mail/{id}', 'Notify@mail');
+Route::get('/user', 'UserAuth@checkUser'); // chceck user wheather register or not
+Route::get('/register', 'UserAuth@addUser'); 
 Route::post('/addusertag',function(){
     // dd(Input::get('id'));
     UserTag::add_tag(Input::get('id'),Input::get('tag'));

@@ -17,7 +17,8 @@
         $(document).ready(function(){
             FB.getLoginStatus(function(res){
                 if(res.status == 'connected'){
-                    userID = res.authResponse.userID;
+		    userID = res.authResponse.userID;
+			
                 }
             });
 
@@ -25,7 +26,7 @@
                 e.preventDefault();
                 FB.getLoginStatus(function(res){
                     if(res.status != 'connected'){
-                        FB.login(function(){},{scope:'user_events,user_groups,user_activities'});
+                        FB.login(function(){},{scope:'user_events,user_groups,user_activities,email'});
                     }else{
                         userID = res.authResponse.userID;
                     }
@@ -46,11 +47,11 @@
             
             FB.getLoginStatus(function(res){
                 if(res.status != 'connected'){
-                    FB.login(function(){},{scope:'user_events,user_groups,user_activities'});
+                    FB.login(function(){},{scope:'user_events,user_groups,user_activities, email'});
                 }else{
                     if(url == ''){
                         url = '/me/events';
-                    }
+		    }
                     FB.api(url,{fields:'description,name'},function(res){
                         
                         if(i <= 10 && typeof(res.paging) != "undefined"){
