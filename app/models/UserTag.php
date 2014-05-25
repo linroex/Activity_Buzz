@@ -8,4 +8,10 @@ class UserTag extends Eloquent{
     public static function get_tag($id){
         return self::where('id','=',$id)->get()->toArray();
     }
+    public static function add_tag($id,$tags = []){
+        foreach ($tags as $tag) {
+            self::create(['id'=>$id,'tag'=>$tag]);
+        }
+        return 1;
+    }
 }

@@ -31,6 +31,7 @@ class ParseWord extends Controller {
     	   preg_match("/(.*)\(/",$word,$matches);
     	   if(isset($matches[1])) $data[] = $matches[1];
         }
+        
     	return Response::json($data);
 
     }

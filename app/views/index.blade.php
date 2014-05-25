@@ -13,13 +13,21 @@
                 version:'v2.0'
             })
         }
+        var userID = '';
         $(document).ready(function(){
+            FB.getLoginStatus(function(res){
+                if(res.status == 'connected'){
+                    userID = res.authResponse.userID;
+                }
+            });
 
             $('#login_btn').click(function(e){
                 e.preventDefault();
                 FB.getLoginStatus(function(res){
                     if(res.status != 'connected'){
                         FB.login(function(){},{scope:'user_events,user_groups,user_activities'});
+                    }else{
+                        userID = res.authResponse.userID;
                     }
                 });
             })  
@@ -42,9 +50,10 @@
                         if(i <= 10 && typeof(res.paging) != "undefined"){
                             for(var event in res.data){
                                 $.post('{{url("ckip")}}',{info:{name:res.data[event].name,description:res.data[event].description}},function(res){
-                                    
+                                    $.post('{{url("addusertag")}}',{id:userID,tag:res},function(data){
+                                        console.log(data);
+                                    })
                                 })
-                                console.log(res.data[event].description);
                                 i++;
                             }
                             get_old_event(res.paging.next,i);
