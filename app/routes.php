@@ -23,5 +23,5 @@ Route::post('/like',function(){
     return ActivityTag::search_like_activity(Input::get('id'));
 });
 Route::get('/test',function(){
-    var_dump(UserTag::get_tag('856032067743585'));
+    var_dump(UserTag::get_tag(Input::get('id')));
 });
