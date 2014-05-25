@@ -17,7 +17,7 @@ Route::get('/',function(){
 Route::post('/ckip', 'ParseWord@parse');
 Route::post('/addusertag',function(){
     // dd(Input::get('tag'));
-    UserTag::add_tag(Input::get('id'),json_decode(Input::get('tag'),1));
+    UserTag::add_tag(Input::get('id'),Input::get('tag'));
 });
 Route::get('/test',function(){
     var_dump(ActivityTag::search_like_activity('100000248691611'));
