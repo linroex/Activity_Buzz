@@ -10,10 +10,10 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+// Route::get('/',function(){
+//     return View::make('index');
+// });
 Route::get('/',function(){
-    return View::make('index');
-});
-Route::get('/index',function(){
     return View::make('index1');
 });
 Route::post('/ckip', 'ParseWord@parse');
