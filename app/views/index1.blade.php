@@ -9,14 +9,16 @@
         userID = '';
         window.fbAsyncInit = function(){
             FB.init({
-                appId:'480583845406954',
+                appId:'249004615287686',
                 xfbml:true,
                 version:'v2.0'
             });
             FB.getLoginStatus(function(res){
                 if(res.status == 'connected'){
                     userID = res.authResponse.userID;
-            
+                    $("#user_tag_link").attr('href',$("#user_tag_link").attr('href') + '/tag1?id=' + userID);
+                    $("#suggest_user_activity_link").attr('href',$("#suggest_user_activity_link").attr('href') + '/like1?id=' + userID);
+                    
                 }
             });
         }
@@ -28,24 +30,27 @@
                         FB.login(function(res){
                             userID = res.authResponse.userID;
                             register();
-                            alert('登入成功')
+                            alert('登入成功');
+                            $("#user_tag_link").attr('href',$("#user_tag_link").attr('href') + '/tag1?id=' + userID);
+                            $("#suggest_user_activity_link").attr('href',$("#suggest_user_activity_link").attr('href') + '/like1?id=' + userID);
                         },{scope:'user_events,user_groups,user_activities,email'});
                     }else{
                         userID = res.authResponse.userID;
-                        console.log('Current Login');
+                        alert('已登入');
                     }
                 });
             })  
             $('#get_btn').click(function(e){
+                alert('start load');
+                $('#get_btn').attr('disabled',true);
                 e.preventDefault();
                 get_old_event('',0);
+                
             })
-            $('#load_btn').click(function(e){
-                e.preventDefault();
-                $.post('{{url("like")}}',{id:userID},function(data){
-                    $('#content').append(data);
-                })
+            $('#logout_btn').click(function(){
+                FB.logout();
             })
+            
         });
         function register(){
             FB.api('/me',function(res){
@@ -64,10 +69,10 @@
                         url = '/me/events';
 	                }
                     FB.api(url,{fields:'description,name'},function(res){
-                        
-                        if(i <= 30 && typeof(res.paging) != "undefined"){
+                        // alert('整理中，請勿重複點擊');
+                        if(i <= 50 && typeof(res.paging) != "undefined"){
                             for(var event in res.data){
-                                $.post('{{url("ckip")}}',{info:{name:res.data[event].name,description:res.data[event].description}},function(res){
+                                $.post('{{url("ckip")}}',{info:{name:res.data[event].name.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g,""),description:res.data[event].description.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g,"") }},function(res){
                                     $.post('{{url("addusertag")}}',{id:userID,tag:res},function(data){
                                         // console.log(data);
                                     })
@@ -76,7 +81,7 @@
                             }
                             get_old_event(res.paging.next,i);
                         }else{
-                            
+                            alert('ok');
                         }
                     });
                 }
@@ -87,8 +92,9 @@
 </head>
 <body>
     <input type="button" id="login_btn" value="登入">
-    <input type="button" id="get_btn" value="取得Tag">
-    <a href='{{url()}}' id="user_tag_link">檢視用戶標籤</a>
-    <a href='{{url()}}' id="suggest_user_activity_link">檢視推薦貼文</a>
+    <input type="button" id="logout_btn" value="登出"><br>
+    <input type="button" id="get_btn" value="取得Tag"><br>
+    <a href='{{url()}}' target="_blank" id="user_tag_link">檢視用戶標籤</a><br>
+    <a href='{{url()}}' target="_blank" id="suggest_user_activity_link">檢視推薦貼文</a>
 </body>
 </html>
