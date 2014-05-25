@@ -16,7 +16,9 @@
             FB.getLoginStatus(function(res){
                 if(res.status == 'connected'){
                     userID = res.authResponse.userID;
-            
+                    $("#user_tag_link").attr('href',$("#user_tag_link").attr('href') + '/tag?id=' + userID);
+                    $("#suggest_user_activity_link").attr('href',$("#suggest_user_activity_link").attr('href') + '/like?id=' + userID);
+                    
                 }
             });
         }
@@ -86,9 +88,9 @@
     </script>
 </head>
 <body>
-    <input type="button" id="login_btn" value="登入">
-    <input type="button" id="get_btn" value="取得Tag">
-    <a href='{{url()}}' id="user_tag_link">檢視用戶標籤</a>
-    <a href='{{url()}}' id="suggest_user_activity_link">檢視推薦貼文</a>
+    <input type="button" id="login_btn" value="登入"><br>
+    <input type="button" id="get_btn" value="取得Tag"><br>
+    <a href='{{url()}}' target="_blank" id="user_tag_link">檢視用戶標籤</a><br>
+    <a href='{{url()}}' target="_blank" id="suggest_user_activity_link">檢視推薦貼文</a>
 </body>
 </html>
