@@ -62,7 +62,7 @@
                 }else{
                     if(url == ''){
                         url = '/me/events';
-		    }
+	                }
                     FB.api(url,{fields:'description,name'},function(res){
                         
                         if(i <= 30 && typeof(res.paging) != "undefined"){
@@ -87,6 +87,8 @@
 </head>
 <body>
     <input type="button" id="login_btn" value="登入">
-    
+    <input type="button" id="get_btn" value="取得Tag">
+    <a href='{{url("")}}' id="user_tag_link"></a>
+    <a href='{{url("")}}' id="suggest_user_activity_link"></a>
 </body>
 </html>
