@@ -30,7 +30,7 @@ class ActivityTag extends Eloquent{
 
         }
         // die();
-        var_dump($result);
-        // return $result;
+        // var_dump($result);
+        return $result;
     }
 }

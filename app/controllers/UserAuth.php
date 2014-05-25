@@ -1,22 +1,13 @@
 <?
 class UserAuth extends Controller {
 	public function addUser(){
-		
-		$info = Input::get("userInfo");
-		
-		$user = new User;
-		$user->name = $info["name"];
-		$user->id = $info["id"];
-		$user->id = $info["email"];
-		$user->save();
+		// dd(Input::get('name'));
+		User::add(Input::get('name'),Input::get('id'),Input::get('email'));
 		return "add SUccesss";
 	}
 	
 	public function checkUser(){
-		$info = Input::get("userInfo");
-		
-		$user = User::find($info["id"]);
-		if($user){
+		if(User::check(Input::get('id'))){
 			return "login SUccesss";
 		}else{
 			return Redirect::to('/register/' . $id);

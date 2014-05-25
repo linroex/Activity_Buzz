@@ -6,29 +6,33 @@
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://connect.facebook.net/en_US/sdk.js"></script>
     <script>
+        userID = '';
         window.fbAsyncInit = function(){
             FB.init({
                 appId:'480583845406954',
                 xfbml:true,
                 version:'v2.0'
-            })
-        }
-        userID = '';
-        $(document).ready(function(){
+            });
             FB.getLoginStatus(function(res){
                 if(res.status == 'connected'){
-		    userID = res.authResponse.userID;
-			
+                    userID = res.authResponse.userID;
+            
                 }
             });
-
+        }
+        
+        $(document).ready(function(){
             $('#login_btn').click(function(e){
-                e.preventDefault();
                 FB.getLoginStatus(function(res){
                     if(res.status != 'connected'){
-                        FB.login(function(){},{scope:'user_events,user_groups,user_activities,email'});
+                        FB.login(function(res){
+                            userID = res.authResponse.userID;
+                            register();
+                            console.log('login success');
+                        },{scope:'user_events,user_groups,user_activities,email'});
                     }else{
                         userID = res.authResponse.userID;
+                        console.log('Current Login');
                     }
                 });
             })  
@@ -43,6 +47,13 @@
                 })
             })
         });
+        function register(){
+            FB.api('/me',function(res){
+                $.post('{{url("register")}}',{name:res.name,id:res.id,email:res.email},function(res){
+                    console.log(res);
+                });
+            });
+        }
         function get_old_event(url,i){
             
             FB.getLoginStatus(function(res){
@@ -75,11 +86,7 @@
     </script>
 </head>
 <body>
-    <a id="login_btn">LOGIN</a><br>
-    <a id="get_btn">GET</a><br>
-    <a id="load_btn">Load Activity</a><br>
-    <div id="content">
-        
-    </div>
+    <input type="button" id="login_btn" value="登入">
+    
 </body>
 </html>
