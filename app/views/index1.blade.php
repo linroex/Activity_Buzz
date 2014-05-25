@@ -16,8 +16,8 @@
             FB.getLoginStatus(function(res){
                 if(res.status == 'connected'){
                     userID = res.authResponse.userID;
-                    $("#user_tag_link").attr('href',$("#user_tag_link").attr('href') + '/tag?id=' + userID);
-                    $("#suggest_user_activity_link").attr('href',$("#suggest_user_activity_link").attr('href') + '/like?id=' + userID);
+                    $("#user_tag_link").attr('href',$("#user_tag_link").attr('href') + '/tag1?id=' + userID);
+                    $("#suggest_user_activity_link").attr('href',$("#suggest_user_activity_link").attr('href') + '/like1?id=' + userID);
                     
                 }
             });
@@ -30,11 +30,11 @@
                         FB.login(function(res){
                             userID = res.authResponse.userID;
                             register();
-                            alert('登入成功')
+                            alert('登入成功');
                         },{scope:'user_events,user_groups,user_activities,email'});
                     }else{
                         userID = res.authResponse.userID;
-                        console.log('Current Login');
+                        alert('已登入');
                     }
                 });
             })  
@@ -42,12 +42,7 @@
                 e.preventDefault();
                 get_old_event('',0);
             })
-            $('#load_btn').click(function(e){
-                e.preventDefault();
-                $.post('{{url("like")}}',{id:userID},function(data){
-                    $('#content').append(data);
-                })
-            })
+            
         });
         function register(){
             FB.api('/me',function(res){
@@ -66,7 +61,7 @@
                         url = '/me/events';
 	                }
                     FB.api(url,{fields:'description,name'},function(res){
-                        
+                        alert('整理中，請勿重複點擊');
                         if(i <= 30 && typeof(res.paging) != "undefined"){
                             for(var event in res.data){
                                 $.post('{{url("ckip")}}',{info:{name:res.data[event].name,description:res.data[event].description}},function(res){
