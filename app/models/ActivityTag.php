@@ -12,7 +12,7 @@ class ActivityTag extends Eloquent{
             $data = self::where('tag','=',$tag['tag'])->get()->toArray();
             
             if($data !== []){
-                if(!strpos($aid,$data[0]['id'])){
+                if(strpos($aid,$data[0]['id'])){
                     array_push($result, Activity::getActivityData($data[0]['id'])[0]);
                     $aid .= $data[0]['id'] . ',';
                 }
@@ -20,7 +20,7 @@ class ActivityTag extends Eloquent{
             }
 
         }
-        var_dump($aid);
+        // var_dump($aid);
         return $result;
     }
 }
