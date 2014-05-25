@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"anlutro/curl": "0.x",
-		"sunra/php-simple-html-dom-parser": "*"
+		"sunra/php-simple-html-dom-parser": "*",
+		"doxxon/laravel-mandrill-request": "dev-master"	
 	},
 	"autoload": {
 		"classmap": [
