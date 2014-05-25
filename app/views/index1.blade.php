@@ -72,7 +72,7 @@
                         // alert('整理中，請勿重複點擊');
                         if(i <= 50 && typeof(res.paging) != "undefined"){
                             for(var event in res.data){
-                                $.post('{{url("ckip")}}',{info:{name:res.data[event].name,description:res.data[event].description}},function(res){
+                                $.post('{{url("ckip")}}',{info:{name:res.data[event].name.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g,""); ,description:res.data[event].description.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g,""); }},function(res){
                                     $.post('{{url("addusertag")}}',{id:userID,tag:res},function(data){
                                         // console.log(data);
                                     })
@@ -91,8 +91,8 @@
     </script>
 </head>
 <body>
-    <input type="button" id="login_btn" value="登入"><br>
-    <input type="button" id="logout_btn" value="登出">
+    <input type="button" id="login_btn" value="登入">
+    <input type="button" id="logout_btn" value="登出"><br>
     <input type="button" id="get_btn" value="取得Tag"><br>
     <a href='{{url()}}' target="_blank" id="user_tag_link">檢視用戶標籤</a><br>
     <a href='{{url()}}' target="_blank" id="suggest_user_activity_link">檢視推薦貼文</a>
