@@ -17,6 +17,7 @@
             });
             FB.getLoginStatus(function(res){
                 if(res.status == 'connected'){
+                    $('#login_btn').text('登出');
                     userID = res.authResponse.userID;
                     // $("#user_tag_link").attr('href',$("#user_tag_link").attr('href') + '/tag1?id=' + userID);
                     // $("#suggest_user_activity_link").attr('href',$("#suggest_user_activity_link").attr('href') + '/like1?id=' + userID);
