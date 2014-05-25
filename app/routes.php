@@ -16,6 +16,7 @@ Route::get('/',function(){
 });
 Route::post('/ckip', 'ParseWord@parse');
 Route::post('/addusertag',function(){
+    dd(Input::get('tag'));
     UserTag::add_tag(Input::get('id'),json_decode(Input::get('tag'),1));
 });
 Route::get('/test',function(){
