@@ -9,7 +9,7 @@
         userID = '';
         window.fbAsyncInit = function(){
             FB.init({
-                appId:'480583845406954',
+                appId:'249004615287686',
                 xfbml:true,
                 version:'v2.0'
             });
