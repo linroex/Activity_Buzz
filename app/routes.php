@@ -32,8 +32,8 @@ Route::get('/tag',function(){
 });
 
 Route::get('/like1',function(){
-    return ActivityTag::search_like_activity(Input::get('id'))->toArray();
+    var_dump(ActivityTag::search_like_activity(Input::get('id')));
 });
 Route::get('/tag1',function(){
-    return UserTag::get_tag(Input::get('id'))->toArray();
+    var_dump(UserTag::get_tag(Input::get('id')));
 });
