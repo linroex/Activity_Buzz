@@ -23,11 +23,9 @@ Route::post('/addusertag',function(){
     UserTag::add_tag(Input::get('id'),Input::get('tag'));
 });
 Route::get('/like',function(){
-    return ActivityTag::search_like_activity(Input::get('id'));
+    return Response::json(ActivityTag::search_like_activity(Input::get('id')));
 });
-Route::get('/test',function(){
-    var_dump( (UserTag::get_tag(Input::get('id'))));
+Route::get('/tag',function(){
+    return Response::json((UserTag::get_tag(Input::get('id'))));
 });
-Route::get('/rand',function(){
-    var_dump(Activity::getRandActivity(8));
-});
+
