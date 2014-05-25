@@ -51,7 +51,7 @@
                             for(var event in res.data){
                                 $.post('{{url("ckip")}}',{info:{name:res.data[event].name,description:res.data[event].description}},function(res){
                                     $.post('{{url("addusertag")}}',{id:userID,tag:res},function(data){
-                                        console.log(data);
+                                        // console.log(data);
                                     })
                                 })
                                 i++;
