@@ -13,7 +13,7 @@
                 version:'v2.0'
             })
         }
-        var userID = '';
+        userID = '';
         $(document).ready(function(){
             FB.getLoginStatus(function(res){
                 if(res.status == 'connected'){
