@@ -11,7 +11,7 @@ class ParseWord extends Controller {
 	preg_match_all('#[-a-zA-Z0-9@:%_\+.~\#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~\#?&//=]*)?#si', 
 		$str, $matches);
 	$str = str_replace($matches[0], "", $str);
-	$str = iconv("UTF-8","big5",$str);
+	$str = iconv("UTF-8","big5//TRANSLIT",$str);
         $request = cURL::newRequest('post','http://sunlight.iis.sinica.edu.tw/cgi-bin/text.cgi',['query'=>$str])
     	    ->setHeader('content-type', 'application/x-www-form-urlencoded');
         $response = $request->send();
