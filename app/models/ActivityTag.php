@@ -16,8 +16,11 @@ class ActivityTag extends Eloquent{
                     array_push($result, Activity::getActivityData($data[0]['id'])[0]);
                     $aid .= $data[0]['id'] . ',';
                 }
+
             }
+
         }
+        var_dump($aid);
         return $result;
     }
 }
