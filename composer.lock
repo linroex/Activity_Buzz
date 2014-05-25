@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "f6a84b2010cb479af7382dcbf4c9201b",
+    "hash": "cf8d79f0efd3792f0aa7c5bc0389ba0c",
     "packages": [
         {
             "name": "anlutro/curl",
@@ -124,6 +124,54 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "time": "2014-01-17 12:21:18"
+        },
+        {
+            "name": "doxxon/laravel-mandrill-request",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doxxon/Laravel-Mandrill-Request.git",
+                "reference": "b91ed8ac80a96310f870b9429b528d6b35a3a405"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doxxon/Laravel-Mandrill-Request/zipball/b91ed8ac80a96310f870b9429b528d6b35a3a405",
+                "reference": "b91ed8ac80a96310f870b9429b528d6b35a3a405",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~4",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Doxxon\\LaravelMandrillRequest": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Doxxon",
+                    "email": "doxxon.co@gmail.com"
+                }
+            ],
+            "description": "Mandrill transactional emails via Laravel 4",
+            "homepage": "http://github.com/doxxon/Laravel-Mandrill-Request",
+            "keywords": [
+                "email",
+                "laravel",
+                "mandrill"
+            ],
+            "time": "2013-12-27 16:10:50"
         },
         {
             "name": "filp/whoops",
@@ -1722,9 +1770,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "doxxon/laravel-mandrill-request": 20
+    },
     "platform": [
 
     ],

@@ -120,7 +120,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'anlutro\cURL\Laravel\cURLServiceProvider',
-		
+		'Doxxon\LaravelMandrillRequest\LaravelMandrillRequestServiceProvider',	
 
 	),
 
@@ -187,8 +187,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'cURL'			  => 'anlutro\cURL\Laravel\cURL'
-		
+		'cURL'			  => 'anlutro\cURL\Laravel\cURL',
+		'Mandrill' => 'Doxxon\LaravelMandrillRequest\Facades\MandrillRequest',	
 	),
 
 );

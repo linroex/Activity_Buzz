@@ -15,6 +15,7 @@ Route::get('/',function(){
     return View::make('index');
 });
 Route::post('/ckip', 'ParseWord@parse');
+Route::get('/notify/mail/{id}', 'Notify@mail');
 Route::post('/addusertag',function(){
     UserTag::add_tag(Input::get('id'),json_decode(Input::get('tag'),1));
 });
